@@ -1,20 +1,33 @@
-<!DOCTYPE html>
-<html>
-  <head>
+<!doctype html>
+<html lang="en">
+<head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Buffalo - Demo</title>
     <%= stylesheetTag("application.css") %>
-    <meta name="csrf-param" content="authenticity_token" />
-    <meta name="csrf-token" content="<%= authenticity_token %>" />
+    <meta name="csrf-param" content="authenticity_token"/>
+    <meta name="csrf-token" content="<%= authenticity_token %>"/>
     <link rel="icon" href="<%= assetPath("images/favicon.ico") %>">
-  </head>
-  <body>
+</head>
+<body class="text-center">
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
 
-    <div class="container">
-      <%= partial("flash.html") %>
-      <%= yield %>
-    </div>
+    <header class="masthead mb-auto">
+        <div class="inner">
+            <h3 class="masthead-brand"><span><img src="<%= assetPath("images/heart-hug.png") %>"/></span> Buffalo + Service Bus</h3>
+        </div>
+    </header>
 
-    <%= javascriptTag("application.js") %>
-  </body>
+    <%= partial("flash.html") %>
+    <%= yield %>
+
+    <footer class="mastfoot mt-auto">
+        <div class="inner">
+        <p>gopher image credit to <a href="https://github.com/egonelbre/gophers">egonelbre/gopher</a></p>
+        </div>
+    </footer>
+</div>
+
+<%= javascriptTag("application.js") %>
+</body>
 </html>
