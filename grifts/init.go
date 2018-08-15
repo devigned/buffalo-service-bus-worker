@@ -1,7 +1,7 @@
 package grifts
 
 import (
-	"github.com/devigned/demo/actions"
+	"github.com/devigned/buffalo-service-bus-worker/actions"
 	"github.com/gobuffalo/buffalo"
 )
 

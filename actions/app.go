@@ -12,7 +12,7 @@ import (
 	"github.com/gobuffalo/envy"
 	"github.com/unrolled/secure"
 
-	"github.com/devigned/demo/models"
+	"github.com/devigned/buffalo-service-bus-worker/models"
 	"github.com/gobuffalo/buffalo/middleware/csrf"
 	"github.com/gobuffalo/buffalo/middleware/i18n"
 	"github.com/gobuffalo/packr"
@@ -21,6 +21,32 @@ import (
 
 	azWorker "github.com/Azure/buffalo-azure/sdk/worker"
 	"github.com/gobuffalo/buffalo/worker"
+)
+
+const (
+	failNotification = `
+
+Failed sending an email upon login
+
+`
+
+	emailNotification = `
+
+
+********************************************************
+********************************************************
+
+
+Sending an mail to: %s
+
+
+********************************************************
+********************************************************
+
+
+
+`
+
 )
 
 // ENV is used to help switch settings based on where the
@@ -99,13 +125,13 @@ func registerWorkers() {
 
 func successfulSendEmail(args worker.Args) error {
 	if email, ok := args["email"].(string); ok {
-		app.Logger.Info("sending email to: ", email)
+		app.Logger.Infof(emailNotification, email)
 	}
 	return nil
 }
 
 func failSendingEmail() error {
-	app.Logger.Error("failed sending email...")
+	app.Logger.Error(failNotification)
 	time.Sleep(1 * time.Second)
 	return errors.New("broken")
 }

@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/devigned/demo/actions"
+	"github.com/devigned/buffalo-service-bus-worker/actions"
 )
 
 func main() {
